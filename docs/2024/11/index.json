@@ -1,13 +1,17 @@
 {
   "11": {
     "EvolutionaryArchitecture": {
-      "titles": {
-        "nl": "Evolutionaire Architectuur"
+      "lang": {
+        "nl": {
+          "title": "Evolutionaire Architectuur"
+        }
       }
     },
     "AgileArchitecture": {
-      "titles": {
-        "nl": "Wendbare Architectuur"
+      "lang": {
+        "nl": {
+          "title": "Wendbare Architectuur"
+        }
       }
     }
   }

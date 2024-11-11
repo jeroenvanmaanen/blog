@@ -56,13 +56,13 @@ function startBlog () {
             console.log("Finalize index: create item for: postKey", postKey);
             const liElement = document.createElement('li');
             const postDetails = BLOG.index.postDetails[postKey];
-            for (const language in postDetails.titles) {
+            for (const language in postDetails.lang) {
                 console.log("Finalize index: create item for: postKey", postKey, language);
                 liElement.append(document.createTextNode(' '));
                 const linkElement = document.createElement('a');
                 const postUrl = postDetails['baseUrl'] + '/' + language + '-' + postDetails.postId + '.md';
                 linkElement.setAttribute('md-data', postUrl);
-                linkElement.append(document.createTextNode(postDetails.titles[language] || postDetails.postId))
+                linkElement.append(document.createTextNode(postDetails.lang[language].title || postDetails.postId))
                 linkElement.onclick = (event) => {
                     const postUrl = event.target.getAttribute('md-data');
                     console.log(postUrl);
@@ -93,14 +93,14 @@ function startBlog () {
                     postDetails.postId = postId;
                     postDetails.month = month;
                     postDetails.day = day;
-                    if (!postDetails.titles) {
-                        postDetails.titles = {};
+                    if (!postDetails.lang) {
+                        postDetails.lang = {};
                     }
                     const postKey = month + "-" + day + ":" + postId;
                     const yearMonth = month.split('-');
                     postDetails.baseUrl = yearMonth[0] + '/' + yearMonth[1] + '/' + day;
                     BLOG.index.postDetails[postKey] = postDetails;
-                    for (const language in postDetails.titles) {
+                    for (const language in postDetails.lang) {
                         BLOG.index.languages[language] = true;
                     }
                 }
