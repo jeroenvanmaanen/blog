@@ -1,0 +1,8 @@
+html {
+    margin:    0 auto;
+    max-width: 900px;
+}
+
+h1, h2, h3, h4 {
+    font-family: sans-serif, SansSerif;
+}
