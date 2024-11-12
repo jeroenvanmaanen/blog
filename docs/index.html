@@ -1,27 +1,35 @@
 <html lang="nl">
 <head>
+    <meta charset="utf-8">
     <title>Jeroen van Maanen — Blog</title>
     <link rel="stylesheet" href="style/main.css">
+    <script language="JavaScript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.0.3/showdown.min.js
+"></script>
+    <script language="JavaScript" src="js/main.js"></script>
 </head>
-<body>
+<body onload="startBlog()">
 
-<h1>Evolutionaire Architectuur</h1>
+<div id="post"><h1>Blog</h1></div>
 
-<p>Architectuur is de verzameling uitgangspunten waarvan je zou willen dat ze van het begin af aan goed waren geweest, zodat ze niet meer hoeven te veranderen. De praktijk is alleen dat bij het ontwikkelen van software alles continu verandert. Daarom is het ook noodzakelijk om continu de architectuur te toetsen aan het doel van het systeem.</p>
+<div id="language" class="sidebar">
+    <label for="language-selector" class="hidden">Language</label>
+    <span id="language-selector-container"><select id="language-selector">
+        <option value="nl" selected>NL</option>
+    </select></span>
+</div>
 
-<p>De architectuur van een systeem is de verzameling uitgangspunten die daadwerkelijk gehanteerd zijn bij het ontwerpen en bouwen van dat systeem. Elk systeem heeft een architectuur. Als het uitgangspunt is geweest: "we bouwen een prototype en we nemen dat in productie en dan kijken we wel wat we doen aan de obstakels die we tegenkomen", dan is dat de architectuur.</p>
+<div id="index" class="sidebar"></div>
 
-<p>Naarmate de complexiteit van een systeem toeneemt, wordt het steeds moeilijker om alle aspecten van de architectuur te overzien. Vandaar ook dat bij veel organisaties vanuit verschillende rollen naar verschillende aspecten van de architectuur gekeken wordt: enterprise architect, domain architect, solution architect, infrastructure architect, etc.</p>
+<div id="colophon" class="sidebar">
+    <h2>Blog</h2>
+    <ul>
+        <li><b><a href="https://www.linkedin.com/in/hanvanmaanen/">Jeroen van Maanen</a></b></li>
+        <li><i>Architect</i></li>
+        <li><i>Software developer</i></li>
+    </ul>
+</div>
 
-<p>Vaak (bijna overal) is de aanname dat de architectuur vast staat en dat de architect alleen het ontwerp van aanpassingen hoeft op te stellen volgens de bestaande uitgangspunten. Onvermijdelijk worden er hier en daar concessies gedaan en verandert het systeem langzaam in een grote bal troep. Daarom is het van belang dat minimaal één van de architecten ook de flexibiliteit van de architectuur in de gaten houdt. In grotere organisaties loont het de moeite om naast de gespecialiseerde architecten ook een evolutionair architect aan te stellen die de flexibiliteit van de architectuur in de gaten houdt.</p>
-
-<h2>Literatuur</h2>
-
-<p class="ragged"><i>Building Evolutionary Architectures</i>,
-    Neal Ford, Rebecca Parsons, Patrick Kua, and Pramod Sadalage, 2023</p>
-
-<p class="ragged"><i>Extreme Programming Explained</i>,
-Kent Beck and Cynthia Andres, 2004</p>
+<div id="logo" class="sidebar">🦀</div>
 
 </body>
 </html>
