@@ -2,6 +2,7 @@ function startBlog () {
     console.log("Showdown: ", showdown);
     let BLOG = {};
     document.BLOG = BLOG;
+    BLOG.language = 'nl';
 
     function loadFile(url, callback) {
         const client = new XMLHttpRequest();
@@ -12,8 +13,10 @@ function startBlog () {
                 if (status === 0 || (status >= 200 && status < 400)) {
                     // The request has been completed successfully
                     callback(client.responseText);
+                } else if (status === 404) {
+                    console.log("Load file: Not found", url)
                 } else {
-                    // Oh no! There has been an error with the request!
+                    // There has been an error with the request
                     console.log("ERROR: Load file", url)
                 }
             }
@@ -42,6 +45,25 @@ function startBlog () {
 
     function finalizeIndex() {
         console.log("Finalize index: languages", BLOG.index.languages);
+
+        let languages = Object.keys(BLOG.index.languages);
+        languages.sort();
+        const selectElement = document.createElement('select');
+        for (const language of languages) {
+            console.log('Add language', language);
+            const optionElement = document.createElement('option');
+            optionElement.setAttribute('value', language);
+            optionElement.append(document.createTextNode(language.toUpperCase()))
+            if (language === BLOG.language) {
+                optionElement.setAttribute('selected', 'selected');
+            }
+            selectElement.append(optionElement);
+        }
+        const container = document.getElementById('language-selector-container');
+        container.innerHTML = '';
+        container.append(selectElement);
+
+        selectElement.setAttribute('id', 'language-selector')
         let postKeys = [];
         for (const postKey in BLOG.index.postDetails) {
             console.log("Finalize index: postKey", postKey);
@@ -62,7 +84,9 @@ function startBlog () {
                 const linkElement = document.createElement('a');
                 const postUrl = postDetails['baseUrl'] + '/' + language + '-' + postDetails.postId + '.md';
                 linkElement.setAttribute('md-data', postUrl);
+                const postDate = postDetails.month + "-" + postDetails.day;
                 linkElement.append(document.createTextNode(postDetails.lang[language].title || postDetails.postId))
+                linkElement.setAttribute('title', postDate);
                 linkElement.onclick = (event) => {
                     const postUrl = event.target.getAttribute('md-data');
                     console.log(postUrl);
