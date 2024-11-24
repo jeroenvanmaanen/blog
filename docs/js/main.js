@@ -31,6 +31,9 @@ function startBlog () {
                 const converter = new showdown.Converter();
                 const post = document.getElementById("post");
                 post.innerHTML = converter.makeHtml(contents);
+                const baseUrl = document.location.pathname;
+                console.log("Base URL:", baseUrl);
+                document.location = baseUrl + '#!' + url;
             }
         );
     }
@@ -153,5 +156,10 @@ function startBlog () {
 
     loadJson('index.json', createGlobalIndex);
 
-    showPost('2024/11/11/nl-EvolutionaryArchitecture.md');
+    const originalUrl = document.location.href;
+    const fragment = originalUrl.split('#!')[1];
+
+    const postPath = fragment || '2024/11/11/nl-EvolutionaryArchitecture.md'
+    console.log("Post path:", postPath);
+    showPost(postPath);
 }
