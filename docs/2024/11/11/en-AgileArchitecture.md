@@ -7,8 +7,8 @@ The core of all methods designed to support an agile approach is to work iterati
 * Think of the smallest activity that could produce something useful
 * Do it
 * Check whether it worked out
-  * If it did, build on it
-  * If it didn't, learn from it and do something else
+    * If it did, build on it
+    * If it didn't, learn from it and do something else
 * Repeat
 
 Evolutionary Architecture proposes to work iteratively with the software architecture (both writing the architecture that we aim for and explicating the current architecture of the system).

@@ -27,8 +27,11 @@ function startBlog () {
 
     function showPage(fragment) {
         const parts = fragment.split('@');
-        const kind = parts[0];
-        const path = parts[1];
+        if (parts[0]) {
+            BLOG.language = parts[0];
+        }
+        const kind = parts[1];
+        const path = parts[2];
         if (kind === 'post') {
             showPost(path);
         } else if (kind === 'bib') {
@@ -48,7 +51,7 @@ function startBlog () {
                 fixLinks(post);
                 const baseUrl = document.location.pathname;
                 console.log("Base URL:", baseUrl);
-                document.location = baseUrl + '#!post@' + url;
+                document.location = baseUrl + '#!' + BLOG.language + '@post@' + url;
             }
         );
     }
@@ -56,7 +59,7 @@ function startBlog () {
     function showMessage(i18nKey) {
         const post = document.getElementById("post");
         appendSpan(post, '', i18nKey);
-        document.location = document.location.pathname + '#!404@message'; // Remove fragment
+        document.location = document.location.pathname + '#!' + BLOG.language + '@404@message'; // Remove fragment
     }
 
     function loadJson(url, callback) {
@@ -138,7 +141,7 @@ function startBlog () {
         bibLink.setAttribute('href', '#');
         appendSpan(bibLink, '', 'I18nReadMore')
         bibLink.onclick = (event) => {
-            showPage('bib@bibliography.json');
+            showPage(BLOG.language + '@bib@bibliography.json');
         }
 
         const indexElement = document.getElementById('index');
@@ -153,13 +156,16 @@ function startBlog () {
         const target = event.target;
         const newLanguage = target.value;
         console.log("Change language:", target, newLanguage);
-        if (newLanguage) {
+        const itemFragment = document.location.href.split('#!')[1];
+        const itemParts = itemFragment.split('@');
+        const itemType = itemParts[1];
+        const itemPath = itemParts[2];
+        if (newLanguage && BLOG.language !== newLanguage) {
+            document.location = document.location.pathname + '#!' + newLanguage + '@' + itemType + '@' + itemPath; // Remove fragment
+            console.log('New location:', document.location.href);
             BLOG.language = newLanguage;
             finalizeIndex();
         }
-        const itemFragment = document.location.href.split('#!')[1];
-        const itemType = itemFragment.split('@')[0];
-        const itemPath = itemFragment.split('@')[1];
         if (itemType === 'post') {
             const dateParts = itemPath.replace(/\/[^/]*$/, '').split('/');
             const monthPath = dateParts[0] + '/' + dateParts[1];
@@ -227,8 +233,6 @@ function startBlog () {
         }
     }
 
-    loadJson('index.json', createGlobalIndex);
-
     function fixLinks(parent) {
         if (parent.tagName.toLowerCase() === 'a') {
             const href = parent.getAttribute('href');
@@ -252,7 +256,7 @@ function startBlog () {
         loadJson(
             url,
             (entries) => {
-                document.location = document.location.pathname + '#!bib@bibliography.json'; // Remove fragment
+                document.location = document.location.pathname + '#!' + BLOG.language + '@bib@bibliography.json'; // Remove fragment
                 const post = document.getElementById("post");
                 post.innerText = '';
                 const heading = document.createElement('h1');
@@ -318,9 +322,15 @@ function startBlog () {
     }
 
     const originalUrl = document.location.href;
-    const fragment = originalUrl.split('#!')[1];
+    let postPath = originalUrl.split('#!')[1];
+    if (postPath) {
+        BLOG.language = postPath.split('@')[0];
+    } else {
+        postPath = 'nl@post@2024/11/11/nl-EvolutionaryArchitecture.md';
+    }
 
-    const postPath = fragment || 'post@2024/11/11/nl-EvolutionaryArchitecture.md'
+    loadJson('index.json', createGlobalIndex);
+
     console.log("Post path:", postPath);
     showPage(postPath);
 }
