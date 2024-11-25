@@ -65,6 +65,28 @@ body {
     font-size: xx-large;
 }
 
+.bibEntry {
+    margin-bottom: .5em;
+}
+
+.bibKey {
+    font-weight: bolder;
+}
+
+.bibKey:before {
+    content: "[";
+    font-weight: bolder;
+}
+
+.bibKey:after {
+    content: "] ";
+    font-weight: bolder;
+}
+
+.bibTitle {
+    font-style: italic;
+}
+
 h1, h2, h3, h4 {
     font-family: sans-serif, SansSerif;
 }

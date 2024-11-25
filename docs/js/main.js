@@ -24,6 +24,19 @@ function startBlog () {
         client.send();
     }
 
+    function showPage(fragment) {
+        const parts = fragment.split('@');
+        const kind = parts[0];
+        const path = parts[1];
+        if (kind === 'post') {
+            showPost(path);
+        } else if (kind === 'bib') {
+            showBibliography(path);
+        } else {
+            showMessage('Not found');
+        }
+    }
+
     function showPost(url) {
         loadFile(
             url,
@@ -33,9 +46,15 @@ function startBlog () {
                 post.innerHTML = converter.makeHtml(contents);
                 const baseUrl = document.location.pathname;
                 console.log("Base URL:", baseUrl);
-                document.location = baseUrl + '#!' + url;
+                document.location = baseUrl + '#!post@' + url;
             }
         );
+    }
+
+    function showMessage(text) {
+        const post = document.getElementById("post");
+        post.innerText = text;
+        document.location = document.location.pathname + '#!404@message'; // Remove fragment
     }
 
     function loadJson(url, callback) {
@@ -156,10 +175,63 @@ function startBlog () {
 
     loadJson('index.json', createGlobalIndex);
 
+    function showBibliography(url) {
+        loadJson(
+            url,
+            (entries) => {
+                const post = document.getElementById("post");
+                post.innerText = '';
+                const heading = document.createElement('h1');
+                heading.append(document.createTextNode("Bibliography"));
+                post.append(heading);
+                for (const entry of entries) {
+                    const div = document.createElement('div');
+                    div.className = 'bibEntry';
+                    const anchor = document.createElement('a');
+                    anchor.id = entry.key;
+                    div.append(anchor);
+                    appendSpan(div, entry.key, 'bibKey');
+                    appendSpan(div, entry.title, 'bibTitle');
+                    if (entry.authors.length > 0) {
+                        appendSpan(div, ', ')
+                        let authors = entry.authors.slice();
+                        const lastAuthor = authors.pop();
+                        if (authors.length === 0) {
+                            appendSpan(div, lastAuthor, 'bibAuthor')
+                        } else {
+                            const firstAuthor = authors.shift();
+                            appendSpan(div, firstAuthor, 'bibAuthor')
+                            for (const extraAuthor of authors) {
+                                appendSpan(div, ', ')
+                                appendSpan(div, extraAuthor, 'bibAuthor')
+                            }
+                            appendSpan(div, ' & ')
+                            appendSpan(div, lastAuthor, 'bibAuthor')
+                        }
+                    }
+                    if (entry.year) {
+                        appendSpan(div, ', ')
+                        appendSpan(div, '' + entry.year, 'bibYear')
+                    }
+                    post.append(div);
+                }
+            }
+        );
+    }
+
+    function appendSpan(parent, text, className) {
+        const span = document.createElement('span');
+        if (className) {
+            span.className = className;
+        }
+        span.append(document.createTextNode(text));
+        parent.append(span);
+    }
+
     const originalUrl = document.location.href;
     const fragment = originalUrl.split('#!')[1];
 
-    const postPath = fragment || '2024/11/11/nl-EvolutionaryArchitecture.md'
+    const postPath = fragment || 'post@2024/11/11/nl-EvolutionaryArchitecture.md'
     console.log("Post path:", postPath);
-    showPost(postPath);
+    showPage(postPath);
 }

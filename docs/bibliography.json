@@ -1,0 +1,319 @@
+[
+{
+  "title": "Extreme Programming Explained",
+  "authors": [
+    "Kent Beck",
+    "Cynthia Andres"
+  ],
+  "year": 2004,
+  "lang": "en",
+  "key": "Beck2004"
+}
+,
+{
+  "title": "Spiral Dynamics",
+  "authors": [
+    "Don Beck",
+    "Christopher Cowan"
+  ],
+  "year": 2005,
+  "lang": "en",
+  "key": "Beck2005"
+}
+,
+{
+  "title": "On Dialogue",
+  "authors": [
+    "David Bohm",
+    "Robert Weinberg"
+  ],
+  "year": 1996,
+  "lang": "en",
+  "key": "Bohm1996"
+}
+,
+{
+  "title": "Darwin's dangerous idea",
+  "authors": [
+    "Daniel Dennett"
+  ],
+  "year": 1995,
+  "lang": "en",
+  "key": "Dennet1995"
+}
+,
+{
+  "title": "Consciousness explained",
+  "authors": [
+    "Daniel Dennett"
+  ],
+  "year": 1991,
+  "lang": "en",
+  "key": "Dennett1991"
+}
+,
+{
+  "title": "Freedom evolves",
+  "authors": [
+    "Daniel Dennett"
+  ],
+  "year": 2003,
+  "lang": "en",
+  "key": "Dennett2003"
+}
+,
+{
+  "title": "Als elke stem telt",
+  "authors": [
+    "Karien Dommerholt",
+    "Adrian Roest",
+    "Robert Tannemaat"
+  ],
+  "year": 2021,
+  "lang": "nl",
+  "key": "Dommerholt2021"
+}
+,
+{
+  "title": "Building Evolutionary Architectures",
+  "authors": [
+    "Neal Ford",
+    "Rebecca Parsons",
+    "Patrick Kua",
+    "Pramod Sadalage"
+  ],
+  "year": 2023,
+  "lang": "en",
+  "key": "Ford2023"
+}
+,
+{
+  "title": "The Goal",
+  "authors": [
+    "Eliyahu Goldratt"
+  ],
+  "year": 2004,
+  "lang": "en",
+  "key": "Goldratt2004"
+}
+,
+{
+  "title": "The cartoon guide to (non-)communication",
+  "authors": [
+    "Larry Gonick"
+  ],
+  "year": 1989,
+  "lang": "en",
+  "key": "Gonick1989"
+}
+,
+{
+  "title": "Servant Leadership",
+  "authors": [
+    "Robert Greenleaf"
+  ],
+  "year": 2002,
+  "lang": "en",
+  "key": "Greenleaf2002"
+}
+,
+{
+  "title": "Gödel, Escher, Bach",
+  "authors": [
+    "Douglas Hofstädter"
+  ],
+  "year": 1979,
+  "lang": "en",
+  "key": "Hofstädter1979"
+}
+,
+{
+  "title": "The mind's I",
+  "authors": [
+    "Douglas Hofstädter",
+    "Daniel Dennett"
+  ],
+  "year": 1981,
+  "lang": "en",
+  "key": "Hofstädter1981"
+}
+,
+{
+  "title": "Continuous Delivery",
+  "authors": [
+    "Jez Humble",
+    "Dave Farley"
+  ],
+  "year": 2010,
+  "lang": "en",
+  "key": "Humble2010"
+}
+,
+{
+  "title": "Transformative Scenario Planning",
+  "authors": [
+    "Adam Kahane"
+  ],
+  "year": 2012,
+  "lang": "en",
+  "key": "Kahane2012"
+}
+,
+{
+  "title": "De creatiespiraal",
+  "authors": [
+    "Marinus Knoope"
+  ],
+  "year": 1998,
+  "lang": "nl",
+  "key": "Knoope1998"
+}
+,
+{
+  "title": "The structure of scientific revolutions",
+  "authors": [
+    "Thomas Kuhn"
+  ],
+  "year": 1962,
+  "lang": "en",
+  "key": "Kuhn1962"
+}
+,
+{
+  "title": "The Five Dysfunctions of a Team",
+  "authors": [
+    "Patrick M. Lencioni"
+  ],
+  "year": 2002,
+  "lang": "en",
+  "key": "Lencioni2002"
+}
+,
+{
+  "title": "Autopoiesis and Cognition",
+  "authors": [
+    "Humberto Maturana",
+    "Francisco Varela"
+  ],
+  "year": 1980,
+  "lang": "en",
+  "key": "Maturana1980"
+}
+,
+{
+  "title": "Release It!",
+  "authors": [
+    "Michael Nygard"
+  ],
+  "year": 2018,
+  "lang": "en",
+  "key": "Nygard2018"
+}
+,
+{
+  "title": "Bottom up!",
+  "authors": [
+    "Floor de Ruiter"
+  ],
+  "year": 2023,
+  "lang": "nl",
+  "key": "Ruiter2023"
+}
+,
+{
+  "title": "The essentials of Theory U",
+  "authors": [
+    "C. Otto Scharmer"
+  ],
+  "year": 2018,
+  "lang": "en",
+  "key": "Scharmer2018"
+}
+,
+{
+  "title": "Humble Consulting",
+  "authors": [
+    "Edgar Schein"
+  ],
+  "year": 2016,
+  "lang": "en",
+  "key": "Schein2016"
+}
+,
+{
+  "title": "Maverick!",
+  "authors": [
+    "Ricardo Semler"
+  ],
+  "year": 1993,
+  "lang": "en",
+  "key": "Semler1993"
+}
+,
+{
+  "title": "Presence",
+  "authors": [
+    "Peter Senge",
+    "C. Otto Scharmer",
+    "Joseph Jaworski",
+    "Betty Sue Flowers"
+  ],
+  "year": 2008,
+  "lang": "en",
+  "key": "Senge2008"
+}
+,
+{
+  "title": "The Fifth Discipline",
+  "authors": [
+    "Peter Senge"
+  ],
+  "year": 2010,
+  "lang": "en",
+  "key": "Senge2010"
+}
+,
+{
+  "title": "99 problems but the boss ain't one",
+  "authors": [
+    "Lennard Toma",
+    "Cedric Muchall"
+  ],
+  "year": 2018,
+  "lang": "nl",
+  "key": "Toma2018"
+}
+,
+{
+  "title": "Aftelbaar-categorische totale-ordeningsstructuren",
+  "authors": [
+    "Jeroen van Maanen"
+  ],
+  "year": 1992,
+  "lang": "nl",
+  "key": "VanMaanen1992"
+}
+,
+{
+  "title": "The Embodied Mind",
+  "authors": [
+    "Francisco Varela",
+    "Evan Thompson",
+    "Eleanor Rosch"
+  ],
+  "year": 2017,
+  "lang": "en",
+  "key": "Varela2017"
+}
+,
+{
+  "title": "Een wereld van gemeenschappen",
+  "authors": [
+    "Floor Ziegler",
+    "Teun Gautier"
+  ],
+  "year": 2023,
+  "lang": "nl",
+  "key": "Ziegler2023"
+}
+]
