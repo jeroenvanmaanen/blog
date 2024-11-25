@@ -1,0 +1,40 @@
+.I18nBlogHeader:after {
+    content: "Blog";
+}
+.I18nPostsHeader:after {
+    content: "Posts";
+}
+.I18nNotFound:after {
+    content: "Not found"
+}
+.I18nBibTitle:after {
+    content: "Bibliography"
+}
+.I18nReadMore:after {
+    content: "Read more…"
+}
+.I18nBibAuthorsAnd:after {
+    content: " and "
+}
+.I18nLanguageEN:after {
+    content: ""
+}
+.I18nLanguageNL:after {
+    content: " 🇳🇱"
+}
+
+body.langNL .I18nBibTitle:after {
+    content: "Bibliografie"
+}
+body.langNL .I18nReadMore:after {
+    content: "Lees meer…"
+}
+body.langNL .I18nBibAuthorsAnd:after {
+    content: " en "
+}
+body.langNL .I18nLanguageEN:after {
+    content: " 🇬🇧"
+}
+body.langNL .I18nLanguageNL:after {
+    content: ""
+}

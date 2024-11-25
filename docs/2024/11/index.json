@@ -11,6 +11,9 @@
       "lang": {
         "nl": {
           "title": "Wendbare Architectuur"
+        },
+        "en": {
+          "title": "Agile Architecture"
         }
       }
     }

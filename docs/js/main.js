@@ -3,6 +3,7 @@ function startBlog () {
     let BLOG = {};
     document.BLOG = BLOG;
     BLOG.language = 'nl';
+    const defaultLanguage = 'en';
 
     function loadFile(url, callback) {
         const client = new XMLHttpRequest();
@@ -33,7 +34,7 @@ function startBlog () {
         } else if (kind === 'bib') {
             showBibliography(path);
         } else {
-            showMessage('Not found');
+            showMessage('I18nNotFound');
         }
     }
 
@@ -44,6 +45,7 @@ function startBlog () {
                 const converter = new showdown.Converter();
                 const post = document.getElementById("post");
                 post.innerHTML = converter.makeHtml(contents);
+                fixLinks(post);
                 const baseUrl = document.location.pathname;
                 console.log("Base URL:", baseUrl);
                 document.location = baseUrl + '#!post@' + url;
@@ -51,9 +53,9 @@ function startBlog () {
         );
     }
 
-    function showMessage(text) {
+    function showMessage(i18nKey) {
         const post = document.getElementById("post");
-        post.innerText = text;
+        appendSpan(post, '', i18nKey);
         document.location = document.location.pathname + '#!404@message'; // Remove fragment
     }
 
@@ -66,11 +68,13 @@ function startBlog () {
     }
 
     function finalizeIndex() {
+        document.getElementsByTagName('body')[0].className = 'lang' + BLOG.language.toUpperCase();
         console.log("Finalize index: languages", BLOG.index.languages);
 
         let languages = Object.keys(BLOG.index.languages);
         languages.sort();
         const selectElement = document.createElement('select');
+        selectElement.onchange = changeLanguage;
         for (const language of languages) {
             console.log('Add language', language);
             const optionElement = document.createElement('option');
@@ -100,17 +104,24 @@ function startBlog () {
             console.log("Finalize index: create item for: postKey", postKey);
             const liElement = document.createElement('li');
             const postDetails = BLOG.index.postDetails[postKey];
+            let postLanguage = undefined;
             for (const language in postDetails.lang) {
-                console.log("Finalize index: create item for: postKey", postKey, language);
+                if (language === BLOG.language) {
+                    postLanguage = language;
+                } else if (!postLanguage && language === defaultLanguage) {
+                    postLanguage = language;
+                }
+            }
+            if (postLanguage) {
+                console.log("Finalize index: create item for: postKey", postKey, postLanguage);
                 liElement.append(document.createTextNode(' '));
                 const linkElement = document.createElement('a');
-                const postUrl = postDetails['baseUrl'] + '/' + language + '-' + postDetails.postId + '.md';
-                linkElement.setAttribute('md-data', postUrl);
+                const postUrl = postDetails['baseUrl'] + '/' + postLanguage + '-' + postDetails.postId + '.md';
+                linkElement.setAttribute('href', '#!' + postLanguage + '@post@' + postUrl);
                 const postDate = postDetails.month + "-" + postDetails.day;
-                linkElement.append(document.createTextNode(postDetails.lang[language].title || postDetails.postId))
+                linkElement.append(document.createTextNode(postDetails.lang[postLanguage].title || postDetails.postId))
                 linkElement.setAttribute('title', postDate);
                 linkElement.onclick = (event) => {
-                    const postUrl = event.target.getAttribute('md-data');
                     console.log(postUrl);
                     showPost(postUrl);
                 }
@@ -119,12 +130,55 @@ function startBlog () {
             ulElement.append(liElement);
         }
         const headerElement = document.createElement('h2');
-        const headerText = document.createTextNode('Posts');
-        headerElement.append(headerText);
+        appendSpan(headerElement, '', 'I18nPostsHeader')
+
+        const bibHeaderElement = document.createElement('h2');
+        appendSpan(bibHeaderElement, '', 'I18nBibTitle')
+        const bibLink = document.createElement('a')
+        bibLink.setAttribute('href', '#');
+        appendSpan(bibLink, '', 'I18nReadMore')
+        bibLink.onclick = (event) => {
+            showPage('bib@bibliography.json');
+        }
+
         const indexElement = document.getElementById('index');
         indexElement.innerHTML = '';
         indexElement.append(headerElement);
         indexElement.append(ulElement);
+        indexElement.append(bibHeaderElement);
+        indexElement.append(bibLink);
+    }
+
+    function changeLanguage(event) {
+        const target = event.target;
+        const newLanguage = target.value;
+        console.log("Change language:", target, newLanguage);
+        if (newLanguage) {
+            BLOG.language = newLanguage;
+            finalizeIndex();
+        }
+        const itemFragment = document.location.href.split('#!')[1];
+        const itemType = itemFragment.split('@')[0];
+        const itemPath = itemFragment.split('@')[1];
+        if (itemType === 'post') {
+            const dateParts = itemPath.replace(/\/[^/]*$/, '').split('/');
+            const monthPath = dateParts[0] + '/' + dateParts[1];
+            const postKey = itemPath.replace(/^.*\/[a-z]*-/, '').replace(/[.]md$/, '');
+            console.log('Current page:', dateParts, postKey);
+            loadJson(
+                monthPath + '/index.json',
+                (monthIndex) => {
+                    const day = dateParts[2];
+                    const postDetails = monthIndex[day][postKey];
+                    console.log('Change language: post details:', postDetails);
+                    if (postDetails.lang[newLanguage]) {
+                        const postPath = monthPath + '/' + day + '/' + newLanguage + '-' + postKey + '.md';
+                        console.log('Change language: post path:', postPath);
+                        showPost(postPath);
+                    }
+                }
+            )
+        }
     }
 
     function updateMonthIndex(month) {
@@ -175,14 +229,34 @@ function startBlog () {
 
     loadJson('index.json', createGlobalIndex);
 
+    function fixLinks(parent) {
+        if (parent.tagName.toLowerCase() === 'a') {
+            const href = parent.getAttribute('href');
+            if (href.startsWith('#!')) {
+                console.log('Add onclick for:', href);
+                parent.onclick = (event) => {
+                    showPage(href.substring(2));
+                };
+            } else {
+                parent.setAttribute('target', '_blank');
+                parent.className = 'externalLink'
+            }
+        } else {
+            for (const child of parent.children) {
+                fixLinks(child);
+            }
+        }
+    }
+
     function showBibliography(url) {
         loadJson(
             url,
             (entries) => {
+                document.location = document.location.pathname + '#!bib@bibliography.json'; // Remove fragment
                 const post = document.getElementById("post");
                 post.innerText = '';
                 const heading = document.createElement('h1');
-                heading.append(document.createTextNode("Bibliography"));
+                appendSpan(heading, '', 'I18nBibTitle')
                 post.append(heading);
                 for (const entry of entries) {
                     const div = document.createElement('div');
@@ -191,7 +265,13 @@ function startBlog () {
                     anchor.id = entry.key;
                     div.append(anchor);
                     appendSpan(div, entry.key, 'bibKey');
-                    appendSpan(div, entry.title, 'bibTitle');
+                    if (entry['item-title']) {
+                        appendSpan(div, '"');
+                        appendSpan(div, entry['item-title'], 'bibItemTitle');
+                        appendSpan(div, '"');
+                    } else {
+                        appendSpan(div, entry.title, 'bibTitle');
+                    }
                     if (entry.authors.length > 0) {
                         appendSpan(div, ', ')
                         let authors = entry.authors.slice();
@@ -205,14 +285,23 @@ function startBlog () {
                                 appendSpan(div, ', ')
                                 appendSpan(div, extraAuthor, 'bibAuthor')
                             }
-                            appendSpan(div, ' & ')
+                            appendSpan(div, '', 'I18nBibAuthorsAnd')
                             appendSpan(div, lastAuthor, 'bibAuthor')
+                        }
+                    }
+                    if (entry['item-title']) {
+                        appendSpan(div, '; in ');
+                        appendSpan(div, entry.title, 'bibTitle');
+                        if (entry.volume) {
+                            appendSpan(div, ' vol. ');
+                            appendSpan(div, '' + entry.volume, 'bibVolume');
                         }
                     }
                     if (entry.year) {
                         appendSpan(div, ', ')
                         appendSpan(div, '' + entry.year, 'bibYear')
                     }
+                    appendSpan(div, '', 'I18nLanguage' + entry.lang.toUpperCase())
                     post.append(div);
                 }
             }

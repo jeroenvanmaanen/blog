@@ -101,3 +101,11 @@ p.ragged {
 .hidden {
     display: none;
 }
+
+a.externalLink:after {
+    content: "⎋";
+    display: inline-block;
+    transform: rotate(90deg);
+    font-size: .7em;
+    color: cadetblue;
+}
