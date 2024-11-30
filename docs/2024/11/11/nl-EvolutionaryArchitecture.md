@@ -14,4 +14,4 @@ Hoe groot of klein de mismatch tussen de architectuur van het systeem en de toep
 * manieren om de daadwerkelijke architectuur inzichtelijk te maken
 * manieren om de mismatch tussen de gewenste architectuur en de werkelijke architectuur inzichtelijk te maken
 
-Daarbij kunnen we steeds zoeken naar de bijsturing die het meest oplevert. Hierbij kijken we vooral naar de balans tussen stabiliteit en de flexibiliteit om het systeem te kunnen aanpassen aan nieuwe gebruikerswensen. Naast agile software develop­ment wil je dus ook een [wendbare architectuur](#).
+Daarbij kunnen we steeds zoeken naar de bijsturing die het meest oplevert. Hierbij kijken we vooral naar de balans tussen stabiliteit en de flexibiliteit om het systeem te kunnen aanpassen aan nieuwe gebruikerswensen. Naast agile software develop­ment wil je dus ook een [wendbare architectuur](#!nl@post@2024/11/11/nl-AgileArchitecture.md).
