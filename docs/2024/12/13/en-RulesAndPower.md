@@ -44,7 +44,7 @@ Only in practice, most situations are not just **Complicated**, they are **Compl
 
 Good advices is: if you find that your approach doesn't seem to work (that means that you are **Confused**), then it is best to assume that the situation is **Complex**. That means that you are instantly no longer **Confused**.
 
-Wehn I look a the practical reality (in politics, in neighborhoods, as well as in enterprises), I see the folowing sequence of events:
+When I look a the practical reality (in politics, in neighborhoods, as well as in enterprises), I see the folowing sequence of events:
 
 * Once in a while there is **Chaos** (war, quarrel, the company consistently loses money)
 * Everyone does what is necessary to survive, but a lot of people act at cross purposes
