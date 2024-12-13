@@ -50,7 +50,7 @@ When I look at the practical reality (in politics, in neigh­borhoods, as well a
 * Everyone does what is necessary to survive, but a lot of people act at cross purposes
 * A small group with a compelling story creates a new order (often it is questionable whether this new order will work out okay for most people)
 * In the new order, most things are **Clear** and **Simple**
-* However, as everything gets beter, we start making rules to ensure that we won't regress to **Chaos** and slowly but surely everything get more **Complicated**
+* However, as everything gets beter, we start making rules to ensure that we won't regress to **Chaos** and slowly but surely everything gets more **Complicated**
 * And then things go wrong: the rules are corruptible. There is a discrepancy between theory and practice. Someone (or some group or company) who figures out how to do it, can use that discrepancy to gain power and use it. Those who are not so clever (poor people, scape goats, blue-collar workers), lose out.
 * So, instead of recognising that the practical reality is shifting from **Complicated** to **Complex**, people in power defend their power base: simplification of the tax laws, a new law that regulates participation of citizens in plans for their neighborhood, automated security scans that shut down non-compliant systems. In *theory* this is a movement toward **Simple**, but in *practice* the situation only gets more **Complex**, so the result is **Confused**. And too long **Confused** leads to **Chaos**. Politicians make promises they can't realise. Neighbors agree on things that don't lead to a friendly, livable, neighborhood. Enterprises follow policies that don't lead to a predictable revenue.
 
