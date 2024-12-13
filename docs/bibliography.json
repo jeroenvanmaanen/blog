@@ -216,6 +216,16 @@
 }
 ,
 {
+  "title": "Logica en Model",
+  "authors": [
+    "Doede Nauta"
+  ],
+  "year": 1970,
+  "lang": "nl",
+  "key": "Nauta1970"
+}
+,
+{
   "title": "Release It!",
   "authors": [
     "Michael Nygard"
