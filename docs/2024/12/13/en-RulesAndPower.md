@@ -1,6 +1,6 @@
 # Rules and Power
 
-Increasingly, I hear people say "that is just how the rules are", or "a deal is a deal", or "orders are orders". Each time that happens, I ask myself what the motivation for that rule was and whether strict adherence to the rule really contributes to the goal that inspired it. Often demand for formal compliance to rules is a veiled way to wield power (I suspect a deeply rooted feeling of insecurity underneath this kind of behavior).
+Increasingly, I hear people say "that is just how the rules are", or "a deal is a deal", or "orders are orders". Each time that happens, I ask myself what the motivation for that rule was and whether strict adherence to the rule really contributes to the goal that inspired it. Often, demand for formal compliance to rules is a veiled way to wield power (I suspect a deeply rooted feeling of insecurity underneath this kind of behavior).
 
 At the end of high-school (goodness, that was in the early eighties), I found a book titled "Logic and Model" [[Nauta1970](#!bib@bibliography.json)] in my father's bookcase. In the early nineties I graduated in Foundations of Mathematics. One of the subjects I studied was Model Theory. In this period I learned a lot about (the problems with) the connections between models and that what they are supposed to model.
 
