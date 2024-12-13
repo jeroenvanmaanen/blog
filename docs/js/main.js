@@ -326,7 +326,7 @@ function startBlog () {
     if (postPath) {
         BLOG.language = postPath.split('@')[0];
     } else {
-        postPath = 'nl@post@2024/11/11/nl-EvolutionaryArchitecture.md';
+        postPath = 'nl@post@2024/12/13/nl-RulesAndPower.md';
     }
 
     loadJson('index.json', createGlobalIndex);
