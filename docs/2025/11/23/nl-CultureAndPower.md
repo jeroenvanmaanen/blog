@@ -6,7 +6,7 @@ Wat heeft dit te maken met cultuur? Het is opmerkelijk hoe verschillend er gedac
 
 Laten we dus eens kijken hoe de huidige context eruit ziet.
 
-* Politici zijn gevoelig voor lobbies
+* Politici zijn gevoelig voor lobby's
 * Grote bedrijven (waaronder banken en big-tech bedrijven) kunnen zich hordes goed betaalde lobbyisten veroorloven
 * Media zijn gevoelig voor de aandacht van doelgroepen
 * Onafhankijke media moeten voor de aandacht van hun doelgroepen concureren met media die in handen zijn van big-tech bedrijven
