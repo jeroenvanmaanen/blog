@@ -2,7 +2,7 @@
 
 Ik hoor steeds vaker "regels zijn regels", of "afspraak is afspraak", of "dat zijn nu eenmaal de regels waar we ons aan te houden hebben". Ik vraag me dan wel steeds af wat de motivatie voor de regel was en of het strak vasthouden aan de regel wel bijdraagt aan het doel waar die regel voor bedacht was. Vaak komt het formeel vasthouden aan regels neer op het uitoefenen van macht (ik vermoed dat daar een diepgewortelde onzekerheid onder zit).
 
-Aan het eind van mijn middelbare-school tijd (oei, dat was begin jaren tachtig), vond ik in de boekenkast van mijn vader het boek "Logica en Model" [[Nauta1970](#!bib@bibliography.json)]. Begin jaren negentig studeerde ik af in de Grondslagen van de Wiskunde. Één van de vakken die ik daarvoor gevolgd heb was Modellen Theorie. Daarbij heb ik veel geleerd over (de beperkingen) van het verband tussen modellen en dat wat ze modelleren.
+Aan het eind van mijn middelbare-school tijd (oei, dat was begin jaren tachtig), vond ik in de boekenkast van mijn vader het boek "Logica en Model" [[Nauta1970](#!@bib@bibliography.json)]. Begin jaren negentig studeerde ik af in de Grondslagen van de Wiskunde. Één van de vakken die ik daarvoor gevolgd heb was Modellen Theorie. Daarbij heb ik veel geleerd over (de beperkingen) van het verband tussen modellen en dat wat ze modelleren.
 
 Ik vind dat ik me, meer dan dertig jaar na mijn studie, eigenlijk geen logicus meer mag noemen, maar ik denk toch dat ik meer dan gemiddelde ervaring heb met het verband tussen modellen (wiskundige, wetenschappelijke en na dertig jaar ervaring in organisaties ook organisatorische modellen) en de praktijk. En dan met vooral met de *beperkingen* van modellen en regels.
 
@@ -58,7 +58,7 @@ Dus het cirkeltje dat we draaien is: **Chaos** → **Simpel** → **Ingewikkeld*
 
 Als je een overtuigend verhaal kunt verzinnen en slim genoeg bent om gebruik te maken van het verschil tussen theorie en praktijk, dan zit je goed. Laat maar komen wat komt. Ik vind dat onvolwassen. Me vol vreten over de ruggen van mensen die onnodig lijden vind ik niet oké.
 
-Daarom zou ik aan het lijstje van David Snowden van zes manieren om situaties aan te pakken, een zevende manier willen toevoegen: **Politiek**. In *The five dysfunctions of a team* [[Lencioni2002](#!bib@bibliography.json)] wordt **Politiek** beschreven als: iets anders zeggen dan je vindt, met als doel je zin te krijgen. Volgens mij komen we steeds in weer **Chaos** terecht omdat we niet genoeg grenzen stellen aan **Politiek** gedrag.
+Daarom zou ik aan het lijstje van David Snowden van zes manieren om situaties aan te pakken, een zevende manier willen toevoegen: **Politiek**. In *The five dysfunctions of a team* [[Lencioni2002](#!@bib@bibliography.json)] wordt **Politiek** beschreven als: iets anders zeggen dan je vindt, met als doel je zin te krijgen. Volgens mij komen we steeds in weer **Chaos** terecht omdat we niet genoeg grenzen stellen aan **Politiek** gedrag.
 
 Mijn voorstel is: laten we eerlijk zijn, de praktijk is **Complex**.
 * Het collectief belang *is* eigenbelang. (De Dalaï Lama zei: zelfzuchtig zijn is geen probleem, maar wees verstandig zelfzuchtig. Gun een ander ook wat; het is in je eigen belang.)

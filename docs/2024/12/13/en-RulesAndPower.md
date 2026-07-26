@@ -2,7 +2,7 @@
 
 Increasingly, I hear people say "that is just how the rules are", or "a deal is a deal", or "orders are orders". Each time that happens, I ask myself what the motivation for that rule was and whether strict adherence to the rule really contributes to the goal that inspired it. Often, demand for formal compliance to rules is a veiled way to wield power (I suspect a deeply rooted feeling of insecurity underneath this kind of behavior).
 
-At the end of high-school (goodness, that was in the early eighties), I found a book titled "Logic and Model" [[Nauta1970](#!bib@bibliography.json)] in my father's bookcase. In the early nineties I graduated in Foundations of Mathematics. One of the subjects I studied was Model Theory. In this period I learned a lot about (the problems with) the connections between models and that what they are supposed to model.
+At the end of high-school (goodness, that was in the early eighties), I found a book titled "Logic and Model" [[Nauta1970](#!@bib@bibliography.json)] in my father's bookcase. In the early nineties I graduated in Foundations of Mathematics. One of the subjects I studied was Model Theory. In this period I learned a lot about (the problems with) the connections between models and that what they are supposed to model.
 
 I guess that, more than thirty years after I graduated, it would not be fair for me to claim to be a logician still. Nevertheless, I believe that I have more than average experience with models (mathematical, scientific, and, after thirty years of experience in organisations, organisational models) and practical reality. Especially with the *shortcomings* of models and rules.
 
@@ -58,7 +58,7 @@ In summary, we run around in this circle: **Chaos** → **Simple** → **Complic
 
 If you can create a compelling story and if you are clever enough to use the discrepancy between theory and practice to your advantage, then you have nothing to fear. You can deal with every stage in the circle. I feel that it is immature to think like that. Living a luxurious life at the cost of others suffering unnecessarily is repulsive to me.
 
-I would like to add a seventh item to the list of David Snowden of ways to deal with situations: **Politics**. In *The five dysfunctions of a team* [[Lencioni2002](#!bib@bibliography.json)], **Politics** is described as: saying something else than you believe in order to get wat you want. In my opinion we end up in **Chaos** time and again, because we don't limit **Political** behavior well enough.
+I would like to add a seventh item to the list of David Snowden of ways to deal with situations: **Politics**. In *The five dysfunctions of a team* [[Lencioni2002](#!@bib@bibliography.json)], **Politics** is described as: saying something else than you believe in order to get wat you want. In my opinion we end up in **Chaos** time and again, because we don't limit **Political** behavior well enough.
 
 I propose: lets be honest, reality is **Complex**.
 * The collective interest *is* self-interest. (The Dalaï Lama said: there is no problem with being selfish, but be wisely selfish. Be generous.)

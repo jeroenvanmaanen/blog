@@ -350,7 +350,7 @@ function startBlog() {
   if (postPath) {
     BLOG.language = postPath.split("@")[0];
   } else {
-    postPath = "nl@post@2025/12/30/nl-DelegationOfPower.md";
+    postPath = "nl@post@2026/07/23/nl-PurposeOfGovernment.md";
   }
 
   loadJson("index.json", createGlobalIndex);
