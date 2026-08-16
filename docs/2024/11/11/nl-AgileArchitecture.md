@@ -11,7 +11,7 @@ De kern van alle methoden die bedacht zijn om een agile aanpak te ondersteunen i
     * Zo nee, leer ervan en doe iets anders
 * Herhaal
 
-Bij Evolutionaire Architectuur werken we ook kort-cyclisch met de architectuur (zowel voor het opstellen van de architectuur waar we naar streven als voor het expliciet maken van de huidige architectuur van het systeem).
+Bij Evolutionaire Architectuur [[Ford2023](#!@bib@bibliography.json@Ford2023)] werken we ook kort-cyclisch met de architectuur (zowel voor het opstellen van de architectuur waar we naar streven als voor het expliciet maken van de huidige architectuur van het systeem).
 
 Cruciaal bij kort-cyclisch werken is feedback. We vragen eind­gebruikers, ontwikkelaars, product owners, infrastructuur spe­cialisten, inkopers, verkopers, en misschien zelfs zo af en toe een directeur "wat zit er volgens jou het minst lekker in het systeem". Deze feedback organiseren we in een architectural-debt backlog. Op basis daarvan bedenken we ideeën om daar iets mee te doen en die organiseren we in een architecture-improvement backlog. Per sprint werken we dan aan een beperkt aantal ideeën van de improvement backlog. Na het imple­menteren van elk idee vragen we opnieuw feedback — er zou iets verbeterd moeten zijn — en werken we beide backlogs bij.
 
