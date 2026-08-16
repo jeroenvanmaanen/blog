@@ -42,7 +42,7 @@ Alberto Brandolini once posited the definition: "culture is the cumulative effec
 
 ### Addiction
 
-An addiction is a solution that compounds the problem (I think I read this in \[[Geurtz1999](#!@bib@bibliography.json)], but I'm afraid someone borrowed it from me, because I can't find the book). This insight is heavily related to culture. Offer a long-term solution for a real problem and the need to care for addicted people diminishes. This is just as true for addiction to social media as for addiction to hard-drugs.
+An addiction is a solution that compounds the problem (I think I read this in \[[Geurtz1999](#!@bib@bibliography.json@Geurtz1999)], but I'm afraid someone borrowed it from me, because I can't find the book). This insight is heavily related to culture. Offer a long-term solution for a real problem and the need to care for addicted people diminishes. This is just as true for addiction to social media as for addiction to hard-drugs.
 
 ### Conway's Law
 
@@ -54,7 +54,7 @@ Monstrous European tenders induce wasteful spending. Take care: opposite economi
 
 ### In theory, there is no difference between theory and practice
 
-The way we think about governance and regulation is quite naive. When I look around me, I see a lot of bodies that govern (not only governmental bodies, but also boards of directors of companies and foundation boards) write memo's that state values, principles, guard rails, rules and laws that are either stating the obvious or completely disconnected from the context in which they are supposed to be applied. I got a lot of insights from the book [The Fifth Discipline](https://en.wikipedia.org/wiki/The_Fifth_Discipline) \[[Senge2010](#!@bib@bibliography.json)] about how organizations work in practice (as opposed to the so called reality on paper). Especially the observation that almost everything is influenced by positive and/or negative feedback and the impact of the delay between cause and effect thoroughly changed my understanding of group behavior.
+The way we think about governance and regulation is quite naive. When I look around me, I see a lot of bodies that govern (not only governmental bodies, but also boards of directors of companies and foundation boards) write memo's that state values, principles, guard rails, rules and laws that are either stating the obvious or completely disconnected from the context in which they are supposed to be applied. I got a lot of insights from the book [The Fifth Discipline](https://en.wikipedia.org/wiki/The_Fifth_Discipline) \[[Senge2010](#!@bib@bibliography.json@Senge2010)] about how organizations work in practice (as opposed to the so called reality on paper). Especially the observation that almost everything is influenced by positive and/or negative feedback and the impact of the delay between cause and effect thoroughly changed my understanding of group behavior.
 
 The gap between theory and practice is highly related to this definition of insanity: repeating the same actions over and over and expecting different results. Conviction: in theory this should work; evaluation: it did not, however (again).
 

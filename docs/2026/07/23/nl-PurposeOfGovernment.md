@@ -42,7 +42,7 @@ Alberto Brandolini gaf eens de definitie: cultuur is het samengesteld effect van
 
 ### Verslaving
 
-Een verslaving is een oplossing die het probleem erger maakt (volgens mij heb ik dit gelezen in \[[Geurtz1999](#!@bib@bibliography.json)] maar ik denk dat ik het heb uitgeleend, want ik kan het boek niet vinden). Deze is zwaar gerelateerd aan cultuur. Bied een werkelijke oplossing voor een reëel probleem, en de behoefte aan verslaafdenzorg neemt af. Dit geldt voor hard drugs maar ook voor social media.
+Een verslaving is een oplossing die het probleem erger maakt (volgens mij heb ik dit gelezen in \[[Geurtz1999](#!@bib@bibliography.json@Geurtz1999)] maar ik denk dat ik het heb uitgeleend, want ik kan het boek niet vinden). Deze is zwaar gerelateerd aan cultuur. Bied een werkelijke oplossing voor een reëel probleem, en de behoefte aan verslaafdenzorg neemt af. Dit geldt voor hard drugs maar ook voor social media.
 
 ### Conway's Law
 
@@ -54,7 +54,7 @@ Monsterlijke Europese aanbestedingen houden verspilling in stand. Pas op: tegeno
 
 ### In theorie is er geen verschil tussen theorie en praktijk
 
-We denken veel te gemakkelijk over bestuur en regelgeving. Ik zie om me heen vele bestuurlijke organen (niet alleen overheid, maar bijvoorbeeld ook directies van bedrijven en stich­tingsbesturen) stukken schrijven met waarden, principes, richtlijnen, afspraken en wetten die óf open deuren intrappen óf volkomen losgezongen zijn van de context waarin ze moeten worden toegepast. Het boek [De Vijfde Discipline](https://en.wikipedia.org/wiki/The_Fifth_Discipline) \[[Senge2010](#!@bib@bibliography.json)] heeft me veel inzicht gegeven in hoe organisaties in de praktijk werken (in tegenstelling tot de zogenaamde werkelijkheid op papier). Vooral de constatering dat vrijwel alles beïnvloed wordt door positieve en/of negatieve feedback en de rol van de vertraging tussen oorzaak en gevolg heeft mijn kijk op groepsgedrag ingrijpend veranderd.
+We denken veel te gemakkelijk over bestuur en regelgeving. Ik zie om me heen vele bestuurlijke organen (niet alleen overheid, maar bijvoorbeeld ook directies van bedrijven en stich­tingsbesturen) stukken schrijven met waarden, principes, richtlijnen, afspraken en wetten die óf open deuren intrappen óf volkomen losgezongen zijn van de context waarin ze moeten worden toegepast. Het boek [De Vijfde Discipline](https://en.wikipedia.org/wiki/The_Fifth_Discipline) \[[Senge2010](#!@bib@bibliography.json@Senge2010)] heeft me veel inzicht gegeven in hoe organisaties in de praktijk werken (in tegenstelling tot de zogenaamde werkelijkheid op papier). Vooral de constatering dat vrijwel alles beïnvloed wordt door positieve en/of negatieve feedback en de rol van de vertraging tussen oorzaak en gevolg heeft mijn kijk op groepsgedrag ingrijpend veranderd.
 
 De kloof tussen theorie en praktijk is sterk verwant aan deze definitie van waanzin: hetzelfde doen maar een andere uitkomst verwachten. Overtuiging: in theorie moet dit werken; evaluatie: het werkte niet (alweer).
 

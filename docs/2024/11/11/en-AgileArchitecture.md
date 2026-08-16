@@ -11,11 +11,11 @@ The core of all methods designed to support an agile approach is to work iterati
     * If it didn't, learn from it and do something else
 * Repeat
 
-Evolutionary Architecture [[Ford2023](#!@bib@bibliography.json)] proposes to work iterati­vely with the software architecture (both writing the archi­tecture that we aim for and explicating the current architecture of the system).
+Evolutionary Architecture [[Ford2023](#!@bib@bibliography.json@Ford2023)] proposes to work iterati­vely with the software architecture (both writing the archi­tecture that we aim for and explicating the current architecture of the system).
 
 While working iteratively, feedback is crucial. We ask end users, developers, product owners, infrastructure specialists, buyers, sales people, and maybe even once in a while a director: "what aspect of the system is least optimal". We organise this feedback in an architectural debt backlog. Based on this backlog, we formulate ideas to improve on these issues ans we organise these ideas in an architecture improvement backlog. Each sprint we work on a limited number of these ideas. After implementing each idea, we ask for new feedback — something should have improved — and update both backlogs.
 
-In the book *Extreme Programming* [[Beck2004](#!@bib@bibliography.json)] the observation is made that software development is like driving a car. There is no perfect position of the steering wheel. Not even on a straight road. We use the wheel to make small corrections in such a way that we can stay on the route as long as we like and can take an exit whenever we want to. The same observation is true for software architecture. We make small corrections in order to:
+In the book *Extreme Programming* [[Beck2004](#!@bib@bibliography.json@Beck2004)] the observation is made that software development is like driving a car. There is no perfect position of the steering wheel. Not even on a straight road. We use the wheel to make small corrections in such a way that we can stay on the route as long as we like and can take an exit whenever we want to. The same observation is true for software architecture. We make small corrections in order to:
 
 * Show the current architecture more clearly
 * Improve the alignment of the principles and guidelines that we would like to apply with our goals

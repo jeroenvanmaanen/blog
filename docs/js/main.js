@@ -1,9 +1,24 @@
 function startBlog() {
+
+  window.addEventListener( "pageshow", function ( event ) {
+    var historyTraversal = event.persisted ||
+                          ( typeof window.performance != "undefined" &&
+                                window.performance.navigation.type === 2 );
+    if ( historyTraversal ) {
+      // Handle page restore.
+      window.location.reload();
+    }
+  });
+  console.log('Registered event-listener that reloads page after using the back-button');
+
+  const l = document.location;
+  console.log("Current location", l.href, l.pathname, l.search, l.hash);
+
   console.log("Showdown: ", showdown);
   let BLOG = {};
   document.BLOG = BLOG;
-  BLOG.language = "nl";
   const defaultLanguage = "en";
+  BLOG.language = defaultLanguage;
 
   function loadFile(url, callback) {
     const client = new XMLHttpRequest();
@@ -25,39 +40,55 @@ function startBlog() {
     client.send();
   }
 
-  function showPage(fragment) {
-    const parts = fragment.split("@");
-    if (parts[0]) {
-      BLOG.language = parts[0];
+  function showCoordinates(coordinates) {
+    if (coordinates.language) {
+      BLOG.language = coordinates.language;
     }
-    const kind = parts[1];
-    const path = parts[2];
+    var kind = coordinates.kind;
+    var path = coordinates.path;
+    var fragment = coordinates.fragment;
     if (kind === "post") {
-      showPost(path);
+      showPost(path, fragment);
     } else if (kind === "bib") {
-      showBibliography(path);
+      showBibliography(path, fragment);
     } else {
       showMessage("I18nNotFound");
     }
   }
 
-  function showPost(url) {
-    loadFile(url, (contents) => {
+  function showPage(fragment) {
+    const parts = fragment.split("@");
+    if (parts[0]) {
+      console.log('Show page: switch to:', parts[0]);
+      BLOG.language = parts[0];
+    }
+    const kind = parts[1];
+    const path = parts[2];
+    const subFragment = parts.length >= 4 ? parts[3] : '';
+    if (kind === "post") {
+      showPost(path, subFragment);
+    } else if (kind === "bib") {
+      showBibliography(path, subFragment);
+    } else {
+      showMessage("I18nNotFound");
+    }
+  }
+
+  function showPost(path, fragment) {
+    loadFile(path, (contents) => {
       const converter = new showdown.Converter();
       const post = document.getElementById("post");
       post.innerHTML = converter.makeHtml(contents);
+      console.log('Converted MD to HTML');
       fixLinks(post);
-      const baseUrl = document.location.pathname;
-      console.log("Base URL:", baseUrl);
-      document.location = baseUrl + "#!" + BLOG.language + "@post@" + url;
+      navigateTo(BLOG.language, 'post', path, fragment);
     });
   }
 
   function showMessage(i18nKey) {
     const post = document.getElementById("post");
     appendSpan(post, "", i18nKey);
-    document.location =
-      document.location.pathname + "#!" + BLOG.language + "@404@message"; // Remove fragment
+    navigateTo(BLOG.language, '404', 'message')
   }
 
   function loadJson(url, callback) {
@@ -131,7 +162,7 @@ function startBlog() {
           ".md";
         linkElement.setAttribute(
           "href",
-          "#!" + postLanguage + "@post@" + postUrl,
+          "?l=" + postLanguage + "&k=post&p=" + encodeURIComponent(postUrl),
         );
         const postDate = postDetails.month + "-" + postDetails.day;
         linkElement.append(
@@ -172,21 +203,14 @@ function startBlog() {
     const target = event.target;
     const newLanguage = target.value;
     console.log("Change language:", target, newLanguage);
-    const itemFragment = document.location.href.split("#!")[1];
-    const itemParts = itemFragment.split("@");
-    const itemType = itemParts[1];
-    const itemPath = itemParts[2];
+    const coordinates = extractCoordinates(document.location);
+    const itemType = coordinates.kind;
+    const itemPath = coordinates.path;
     if (newLanguage && BLOG.language !== newLanguage) {
-      document.location =
-        document.location.pathname +
-        "#!" +
-        newLanguage +
-        "@" +
-        itemType +
-        "@" +
-        itemPath; // Remove fragment
-      console.log("New location:", document.location.href);
+      console.log("New language:", newLanguage);
       BLOG.language = newLanguage;
+      navigateTo(newLanguage, itemType, itemPath);
+      console.log("New location:", document.location.href);
       finalizeIndex();
     }
     if (itemType === "post") {
@@ -259,12 +283,30 @@ function startBlog() {
   function fixLinks(parent) {
     if (parent.tagName.toLowerCase() === "a") {
       const href = parent.getAttribute("href");
+      console.log("Fix link:", href);
       if (href.startsWith("#!")) {
         console.log("Add onclick for:", href);
+        parts = href.substring(2).split('@')
+        if (parts.length >= 3) {
+          const language = parts[0] ? parts[0] : BLOG.language;
+          fragment = parts.length >= 4 ? parts[3] : '';
+          parent.href = makeUrl(language, parts[1], parts[2], fragment)
+        }
         parent.onclick = (event) => {
           showPage(href.substring(2));
         };
-      } else {
+      } else if (href.startsWith('?')) {
+        console.log("Add onclick for:", href);
+        const parts = href.split('#');
+        const fragment = (parts.length >= 2 && parts[1]) ? parts[1] : '';
+        const coordinates = extractCoordinates({ 'search': parts[0], 'hash': fragment });
+        if (!coordinates.language) {
+          coordinates.language = BLOG.language;
+        }
+        parent.onclick = (event) => {
+          showCoordinates(coordinates);
+        };
+      } else if (!href.startsWith("#")) {
         parent.setAttribute("target", "_blank");
         parent.className = "externalLink";
       }
@@ -275,24 +317,23 @@ function startBlog() {
     }
   }
 
-  function showBibliography(url) {
+  function showBibliography(url, fragment) {
     loadJson(url, (entries) => {
-      document.location =
-        document.location.pathname +
-        "#!" +
-        BLOG.language +
-        "@bib@bibliography.json"; // Remove fragment
+      const highlight = (fragment && fragment.startsWith('#')) ? fragment.substring(1) : fragment;
       const post = document.getElementById("post");
       post.innerText = "";
       const heading = document.createElement("h1");
       appendSpan(heading, "", "I18nBibTitle");
       post.append(heading);
       for (const entry of entries) {
+        const asciiKey = entry.asciiKey ? entry.asciiKey : entry.key;
         const div = document.createElement("div");
-        div.className = "bibEntry";
-        const anchor = document.createElement("a");
-        anchor.id = entry.key;
-        div.append(anchor);
+        div.id = asciiKey;
+        if (asciiKey === highlight) {
+          div.className = "bibEntry highlight";
+        } else {
+          div.className = "bibEntry";
+        }
         appendSpan(div, entry.key, "bibKey");
         if (entry["item-title"]) {
           appendSpan(div, '"');
@@ -333,6 +374,7 @@ function startBlog() {
         appendSpan(div, "", "I18nLanguage" + entry.lang.toUpperCase());
         post.append(div);
       }
+      navigateTo(BLOG.language, 'bib', 'bibliography.json', fragment);
     });
   }
 
@@ -345,16 +387,119 @@ function startBlog() {
     parent.append(span);
   }
 
-  const originalUrl = document.location.href;
-  let postPath = originalUrl.split("#!")[1];
-  if (postPath) {
-    BLOG.language = postPath.split("@")[0];
-  } else {
-    postPath = "nl@post@2026/07/23/nl-PurposeOfGovernment.md";
+  function navigateTo(language, kind, path, fragment) {
+    const translatedPath = path.replace(/\/[a-z][a-z](-.*)$/, '/' + language + '$1')
+    const url = makeUrl(language, kind, translatedPath, fragment);
+    const parts = document.location.href.split('/', 4);
+    const ref = parts.length >= 4 ? '/' + parts[3] : '';
+    if (url !== ref) {
+      const baseUrl = parts.length >= 3 ? parts[0] + '//' + parts[2] : '';
+      console.log('Navigate from:', document.location.href, ': to:', baseUrl + url);
+      window.location.href = baseUrl + url;
+      console.log('New window location:', window.location);
+    } else {
+      console.log('Remain on:', ref);
+      if (fragment) {
+        var id = fragment.startsWith('#') ? fragment.substring(1) : fragment;
+        const anchor = document.getElementById(id);
+        console.log('Scroll into view:', id, anchor);
+        if (anchor) {
+          anchor.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    }
+  }
+
+  function makeUrl(language, kind, path, fragment) {
+    var search = '';
+    if (language) {
+      search += '&l=' + language;
+    }
+    if (kind) {
+      search += '&k=' + kind;
+    }
+    if (path) {
+      search += '&p=' + encodeURIComponent(path);
+    }
+    if (search.length > 0) {
+      search = '?' + search.substring(1);
+    }
+    var fragmentPart = fragment ? fragment : '';
+    if (!fragmentPart.startsWith('#')) {
+      fragmentPart = '#' + fragmentPart;
+    }
+    return document.location.pathname + search + fragmentPart;
+  }
+
+  function extractCoordinates(location) {
+    var result = {};
+    if (location.search) {
+      const query = location.search.substring(1);
+      const vars = query.split('&');
+      for (var i = 0; i < vars.length; i++) {
+        const pair = vars[i].split('=');
+        const field = pair[0];
+        const value = decodeURIComponent(pair[1]);
+        if (field === 'l') {
+          result.language = value;
+        } else if (field === 'k') {
+          result.kind = value;
+        } else if (field === 'p') {
+          result.path = value;
+        }
+      }
+      if (location.hash) {
+        result.fragment = location.hash;
+      }
+    } else if (location.hash && location.hash.startsWith('#!')) {
+      result = extractCoordinatesFromHash(location.hash);
+    }
+    if (!result.language) {
+      result.language = BLOG.language;
+    }
+    console.log("Extracted coordinates:", result);
+    return result;
+  }
+
+  function extractCoordinatesFromHash(hash) {
+    const triple = location.search.substring(2);
+    const vars = hash.split('@');
+    if (vars.length < 3) {
+      return {};
+    }
+    result = {};
+    if (vars[0]) {
+      result.language = vars[0];
+    }
+    if (vars[1]) {
+      result.kind = vars[1];
+    }
+    if (vars[2]) {
+      result.path = vars[2];
+    }
+    return result;
+  }
+
+  const coordinates = extractCoordinates(document.location);
+  if (coordinates.language) {
+    BLOG.language = coordinates.language;
+  }
+  console.log('Initial language:', BLOG.language);
+
+  if (!coordinates.path) {
+    coordinates.kind = 'post';
+    coordinates.path = '2026/07/23/' + BLOG.language + '-PurposeOfGovernment.md';
+  } else if (!coordinates.kind) {
+    coordinates.kind = 'post';
   }
 
   loadJson("index.json", createGlobalIndex);
 
-  console.log("Post path:", postPath);
-  showPage(postPath);
+  console.log('Coordinates:', coordinates);
+  showCoordinates(coordinates);
 }
+
+// http://localhost:8080/?l=nl&k=post&p=/2026/08/15/nl-NewGame.md
