@@ -1,5 +1,5 @@
 .I18nBlogHeader:after {
-    content: "Blog";
+    content: "\00A0";
 }
 .I18nPostsHeader:after {
     content: "Posts";

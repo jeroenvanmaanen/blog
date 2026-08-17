@@ -57,6 +57,10 @@ body {
 
 #colophon {
     left: -190px;
+}
+
+#colophon,
+#index {
     font-family: sans-serif, SansSerif;
 }
 

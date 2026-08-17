@@ -17,8 +17,9 @@ function startBlog() {
   console.log("Showdown: ", showdown);
   let BLOG = {};
   document.BLOG = BLOG;
-  const defaultLanguage = "en";
-  BLOG.language = defaultLanguage;
+  BLOG.coordinates = {};
+  BLOG.defaultLanguage = "en";
+  BLOG.currentHighlight = '';
 
   function loadFile(url, callback) {
     const client = new XMLHttpRequest();
@@ -77,8 +78,8 @@ function startBlog() {
   function showPost(path, fragment) {
     loadFile(path, (contents) => {
       const converter = new showdown.Converter();
-      const post = document.getElementById("post");
-      post.innerHTML = converter.makeHtml(contents);
+      const post = document.getElementById('post');
+      post.innerHTML = converter.makeHtml(contents + '<p>&nbsp;</p><p>&nbsp;</p>');
       console.log('Converted MD to HTML');
       fixLinks(post);
       navigateTo(BLOG.language, 'post', path, fragment);
@@ -141,7 +142,7 @@ function startBlog() {
       for (const language in postDetails.lang) {
         if (language === BLOG.language) {
           postLanguage = language;
-        } else if (!postLanguage && language === defaultLanguage) {
+        } else if (!postLanguage && language === BLOG.defaultLanguage) {
           postLanguage = language;
         }
       }
@@ -266,13 +267,25 @@ function startBlog() {
   }
 
   function createGlobalIndex(indexSource) {
+    console.log("Create global index");
+    const months = indexSource.months;
     let indexToDo = {};
     BLOG.indexToDo = indexToDo;
     BLOG.index = {
       languages: {},
       postDetails: {},
     };
-    for (const monthPair of indexSource) {
+    if (!BLOG.coordinates.language) {
+      BLOG.coordinates.language = indexSource.defaults.language;
+    }
+    BLOG.language = BLOG.coordinates.language;
+    if (!BLOG.coordinates.path) {
+      BLOG.coordinates.kind = 'post';
+      const path = '/' + indexSource.defaults.post.dir + '/' + BLOG.coordinates.language + "-" + indexSource.defaults.post.name + ".md";
+      console.log("Path of default post:", path);
+      BLOG.coordinates.path = path;
+    }
+    for (const monthPair of months) {
       const month = monthPair[0] + "-" + monthPair[1];
       indexToDo[month] = true;
       const monthUrl = monthPair[0] + "/" + monthPair[1] + "/index.json";
@@ -306,7 +319,12 @@ function startBlog() {
         parent.onclick = (event) => {
           showCoordinates(coordinates);
         };
-      } else if (!href.startsWith("#")) {
+      } else if (href.startsWith("#")) {
+        parent.onclick = (event) => {
+          const coords = extractCoordinates(window.location);
+          navigateTo(coords.language, coords.kind, coords.path, href);
+        }
+      } else {
         parent.setAttribute("target", "_blank");
         parent.className = "externalLink";
       }
@@ -374,6 +392,9 @@ function startBlog() {
         appendSpan(div, "", "I18nLanguage" + entry.lang.toUpperCase());
         post.append(div);
       }
+      const spacer = document.createElement('div');
+      spacer.innerHTML = '<p>&nbsp;</p><p>&nbsp;</p>'
+      post.append(spacer);
       navigateTo(BLOG.language, 'bib', 'bibliography.json', fragment);
     });
   }
@@ -399,17 +420,39 @@ function startBlog() {
       console.log('New window location:', window.location);
     } else {
       console.log('Remain on:', ref);
-      if (fragment) {
-        var id = fragment.startsWith('#') ? fragment.substring(1) : fragment;
-        const anchor = document.getElementById(id);
-        console.log('Scroll into view:', id, anchor);
-        if (anchor) {
-          anchor.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+    }
+    var id = (fragment && fragment.startsWith('#')) ? fragment.substring(1) : fragment;
+    if (id) {
+      if (BLOG.currentHighlight) {
+        removeHighlight(BLOG.currentHighlight);
+        BLOG.currentHighlight = '';
       }
+      addHighlight(id);
+      BLOG.currentHighlight = id;
+      const anchor = document.getElementById(id);
+      console.log('Scroll into view:', id, anchor);
+      if (anchor) {
+        anchor.scrollIntoView({
+          behavior: 'auto',
+          block: 'start'
+        });
+        document.getElementById('post').parentNode.scrollBy(0, -40)
+      }
+    }
+  }
+
+  function removeHighlight(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.className = element.className.replace(/ ?highlight/, '');
+    }
+  }
+
+  function addHighlight(id) {
+    removeHighlight(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.className = (element.className ? element.className + ' ' : '') + 'highlight';
     }
   }
 
@@ -483,23 +526,14 @@ function startBlog() {
     return result;
   }
 
-  const coordinates = extractCoordinates(document.location);
-  if (coordinates.language) {
-    BLOG.language = coordinates.language;
-  }
-  console.log('Initial language:', BLOG.language);
+  BLOG.coordinates = extractCoordinates(document.location);
+  console.log("Loading index.json...");
+  loadJson("index.json", (indexSource) => {
+    createGlobalIndex(indexSource);
 
-  if (!coordinates.path) {
-    coordinates.kind = 'post';
-    coordinates.path = '2026/07/23/' + BLOG.language + '-PurposeOfGovernment.md';
-  } else if (!coordinates.kind) {
-    coordinates.kind = 'post';
-  }
-
-  loadJson("index.json", createGlobalIndex);
-
-  console.log('Coordinates:', coordinates);
-  showCoordinates(coordinates);
+    console.log('Coordinates:', BLOG.coordinates);
+    showCoordinates(BLOG.coordinates);
+  });
 }
 
 // http://localhost:8080/?l=nl&k=post&p=/2026/08/15/nl-NewGame.md
